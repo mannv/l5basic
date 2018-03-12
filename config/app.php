@@ -162,7 +162,8 @@ return [
 
         \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         \Barryvdh\Debugbar\ServiceProvider::class,
-        \Prettus\Repository\Providers\RepositoryServiceProvider::class
+        \Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        \Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class
 
     ],
 
@@ -212,7 +213,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class
     ],
 
 ];
