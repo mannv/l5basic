@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -100,6 +101,7 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
+        die('Access define!');
         $this->middleware('guest');
     }
 }

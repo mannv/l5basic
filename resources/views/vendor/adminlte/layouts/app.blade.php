@@ -44,12 +44,11 @@ desired effect
 
         <!-- Main content -->
         <section class="content">
+        @include('adminlte::layouts.partials.alert')
             <!-- Your Page Content Here -->
             @yield('main-content')
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
-
-    @include('adminlte::layouts.partials.controlsidebar')
 
     @include('adminlte::layouts.partials.footer')
 

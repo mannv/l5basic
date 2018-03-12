@@ -33,6 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('adminlte::home');
+//        return view('adminlte::home');
+        return view('list');
     }
 }
