@@ -16,7 +16,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <h1>Hello World</h1>
+                        <h1>Hello World {{module_path('Backend')}}</h1>
 
                         <p>
                             This view is loaded from module: {!! config('backend.name') !!}

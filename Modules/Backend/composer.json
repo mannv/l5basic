@@ -1,10 +1,10 @@
 {
-    "name": "nwidart/backend",
+    "name": "backend",
     "description": "",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Ha Anh Man",
+            "email": "anhmantk@gmail.com"
         }
     ],
     "extra": {

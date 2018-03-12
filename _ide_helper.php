@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.11 on 2018-03-12 10:38:36.
+ * Generated for Laravel 5.6.11 on 2018-03-12 16:25:26.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -12329,6 +12329,1385 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace Barryvdh\Debugbar { 
+
+    class Facade {
+        
+        /**
+         * Enable the Debugbar and boot, if not already booted.
+         *
+         * @static 
+         */ 
+        public static function enable()
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::enable();
+        }
+        
+        /**
+         * Boot the debugbar (add collectors, renderer and listener)
+         *
+         * @static 
+         */ 
+        public static function boot()
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::boot();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function shouldCollect($name, $default = false)
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::shouldCollect($name, $default);
+        }
+        
+        /**
+         * Adds a data collector
+         *
+         * @param \Barryvdh\Debugbar\DataCollectorInterface $collector
+         * @throws DebugBarException
+         * @return $this 
+         * @static 
+         */ 
+        public static function addCollector($collector)
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::addCollector($collector);
+        }
+        
+        /**
+         * Handle silenced errors
+         *
+         * @param $level
+         * @param $message
+         * @param string $file
+         * @param int $line
+         * @param array $context
+         * @throws \ErrorException
+         * @static 
+         */ 
+        public static function handleError($level, $message, $file = '', $line = 0, $context = array())
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::handleError($level, $message, $file, $line, $context);
+        }
+        
+        /**
+         * Starts a measure
+         *
+         * @param string $name Internal name, used to stop the measure
+         * @param string $label Public name
+         * @static 
+         */ 
+        public static function startMeasure($name, $label = null)
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::startMeasure($name, $label);
+        }
+        
+        /**
+         * Stops a measure
+         *
+         * @param string $name
+         * @static 
+         */ 
+        public static function stopMeasure($name)
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::stopMeasure($name);
+        }
+        
+        /**
+         * Adds an exception to be profiled in the debug bar
+         *
+         * @param \Exception $e
+         * @deprecated in favor of addThrowable
+         * @static 
+         */ 
+        public static function addException($e)
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::addException($e);
+        }
+        
+        /**
+         * Adds an exception to be profiled in the debug bar
+         *
+         * @param \Exception $e
+         * @static 
+         */ 
+        public static function addThrowable($e)
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::addThrowable($e);
+        }
+        
+        /**
+         * Returns a JavascriptRenderer for this instance
+         *
+         * @param string $baseUrl
+         * @param string $basePathng
+         * @return \Barryvdh\Debugbar\JavascriptRenderer 
+         * @static 
+         */ 
+        public static function getJavascriptRenderer($baseUrl = null, $basePath = null)
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::getJavascriptRenderer($baseUrl, $basePath);
+        }
+        
+        /**
+         * Modify the response and inject the debugbar (or data in headers)
+         *
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         * @param \Symfony\Component\HttpFoundation\Response $response
+         * @return \Symfony\Component\HttpFoundation\Response 
+         * @static 
+         */ 
+        public static function modifyResponse($request, $response)
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::modifyResponse($request, $response);
+        }
+        
+        /**
+         * Check if the Debugbar is enabled
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function isEnabled()
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::isEnabled();
+        }
+        
+        /**
+         * Collects the data from the collectors
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function collect()
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::collect();
+        }
+        
+        /**
+         * Injects the web debug toolbar into the given Response.
+         *
+         * @param \Symfony\Component\HttpFoundation\Response $response A Response instance
+         * Based on https://github.com/symfony/WebProfilerBundle/blob/master/EventListener/WebDebugToolbarListener.php
+         * @static 
+         */ 
+        public static function injectDebugbar($response)
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::injectDebugbar($response);
+        }
+        
+        /**
+         * Disable the Debugbar
+         *
+         * @static 
+         */ 
+        public static function disable()
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::disable();
+        }
+        
+        /**
+         * Adds a measure
+         *
+         * @param string $label
+         * @param float $start
+         * @param float $end
+         * @static 
+         */ 
+        public static function addMeasure($label, $start, $end)
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::addMeasure($label, $start, $end);
+        }
+        
+        /**
+         * Utility function to measure the execution of a Closure
+         *
+         * @param string $label
+         * @param \Closure $closure
+         * @static 
+         */ 
+        public static function measure($label, $closure)
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::measure($label, $closure);
+        }
+        
+        /**
+         * Collect data in a CLI request
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function collectConsole()
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::collectConsole();
+        }
+        
+        /**
+         * Adds a message to the MessagesCollector
+         * 
+         * A message can be anything from an object to a string
+         *
+         * @param mixed $message
+         * @param string $label
+         * @static 
+         */ 
+        public static function addMessage($message, $label = 'info')
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::addMessage($message, $label);
+        }
+        
+        /**
+         * Checks if a data collector has been added
+         *
+         * @param string $name
+         * @return boolean 
+         * @static 
+         */ 
+        public static function hasCollector($name)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::hasCollector($name);
+        }
+        
+        /**
+         * Returns a data collector
+         *
+         * @param string $name
+         * @return \DebugBar\DataCollectorInterface 
+         * @throws DebugBarException
+         * @static 
+         */ 
+        public static function getCollector($name)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getCollector($name);
+        }
+        
+        /**
+         * Returns an array of all data collectors
+         *
+         * @return \DebugBar\array[DataCollectorInterface] 
+         * @static 
+         */ 
+        public static function getCollectors()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getCollectors();
+        }
+        
+        /**
+         * Sets the request id generator
+         *
+         * @param \DebugBar\RequestIdGeneratorInterface $generator
+         * @return $this 
+         * @static 
+         */ 
+        public static function setRequestIdGenerator($generator)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setRequestIdGenerator($generator);
+        }
+        
+        /**
+         * 
+         *
+         * @return \DebugBar\RequestIdGeneratorInterface 
+         * @static 
+         */ 
+        public static function getRequestIdGenerator()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getRequestIdGenerator();
+        }
+        
+        /**
+         * Returns the id of the current request
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getCurrentRequestId()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getCurrentRequestId();
+        }
+        
+        /**
+         * Sets the storage backend to use to store the collected data
+         *
+         * @param \DebugBar\StorageInterface $storage
+         * @return $this 
+         * @static 
+         */ 
+        public static function setStorage($storage = null)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setStorage($storage);
+        }
+        
+        /**
+         * 
+         *
+         * @return \DebugBar\StorageInterface 
+         * @static 
+         */ 
+        public static function getStorage()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getStorage();
+        }
+        
+        /**
+         * Checks if the data will be persisted
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function isDataPersisted()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::isDataPersisted();
+        }
+        
+        /**
+         * Sets the HTTP driver
+         *
+         * @param \DebugBar\HttpDriverInterface $driver
+         * @return $this 
+         * @static 
+         */ 
+        public static function setHttpDriver($driver)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setHttpDriver($driver);
+        }
+        
+        /**
+         * Returns the HTTP driver
+         * 
+         * If no http driver where defined, a PhpHttpDriver is automatically created
+         *
+         * @return \DebugBar\HttpDriverInterface 
+         * @static 
+         */ 
+        public static function getHttpDriver()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getHttpDriver();
+        }
+        
+        /**
+         * Returns collected data
+         * 
+         * Will collect the data if none have been collected yet
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getData()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getData();
+        }
+        
+        /**
+         * Returns an array of HTTP headers containing the data
+         *
+         * @param string $headerName
+         * @param integer $maxHeaderLength
+         * @return array 
+         * @static 
+         */ 
+        public static function getDataAsHeaders($headerName = 'phpdebugbar', $maxHeaderLength = 4096, $maxTotalHeaderLength = 250000)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getDataAsHeaders($headerName, $maxHeaderLength, $maxTotalHeaderLength);
+        }
+        
+        /**
+         * Sends the data through the HTTP headers
+         *
+         * @param bool $useOpenHandler
+         * @param string $headerName
+         * @param integer $maxHeaderLength
+         * @return $this 
+         * @static 
+         */ 
+        public static function sendDataInHeaders($useOpenHandler = null, $headerName = 'phpdebugbar', $maxHeaderLength = 4096)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::sendDataInHeaders($useOpenHandler, $headerName, $maxHeaderLength);
+        }
+        
+        /**
+         * Stacks the data in the session for later rendering
+         *
+         * @static 
+         */ 
+        public static function stackData()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::stackData();
+        }
+        
+        /**
+         * Checks if there is stacked data in the session
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function hasStackedData()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::hasStackedData();
+        }
+        
+        /**
+         * Returns the data stacked in the session
+         *
+         * @param boolean $delete Whether to delete the data in the session
+         * @return array 
+         * @static 
+         */ 
+        public static function getStackedData($delete = true)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getStackedData($delete);
+        }
+        
+        /**
+         * Sets the key to use in the $_SESSION array
+         *
+         * @param string $ns
+         * @return $this 
+         * @static 
+         */ 
+        public static function setStackDataSessionNamespace($ns)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setStackDataSessionNamespace($ns);
+        }
+        
+        /**
+         * Returns the key used in the $_SESSION array
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getStackDataSessionNamespace()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getStackDataSessionNamespace();
+        }
+        
+        /**
+         * Sets whether to only use the session to store stacked data even
+         * if a storage is enabled
+         *
+         * @param boolean $enabled
+         * @return $this 
+         * @static 
+         */ 
+        public static function setStackAlwaysUseSessionStorage($enabled = true)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setStackAlwaysUseSessionStorage($enabled);
+        }
+        
+        /**
+         * Checks if the session is always used to store stacked data
+         * even if a storage is enabled
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function isStackAlwaysUseSessionStorage()
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::isStackAlwaysUseSessionStorage();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function offsetSet($key, $value)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::offsetSet($key, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function offsetGet($key)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::offsetGet($key);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function offsetExists($key)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::offsetExists($key);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function offsetUnset($key)
+        {
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::offsetUnset($key);
+        }
+         
+    }
+ 
+}
+
+namespace Acacha\AdminLTETemplateLaravel\Facades { 
+
+    class AdminLTE {
+        
+        /**
+         * Home controller copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function homeController()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::homeController();
+        }
+        
+        /**
+         * Auth register controller copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function registerController()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::registerController();
+        }
+        
+        /**
+         * Auth login controller copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function loginController()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::loginController();
+        }
+        
+        /**
+         * Auth forgot password controller copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function forgotPasswordController()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::forgotPasswordController();
+        }
+        
+        /**
+         * No guest Auth forgot password controller copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function noGuestForgotPasswordController()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::noGuestForgotPasswordController();
+        }
+        
+        /**
+         * Auth reset password controller copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function resetPasswordController()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::resetPasswordController();
+        }
+        
+        /**
+         * Public assets copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function publicAssets()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::publicAssets();
+        }
+        
+        /**
+         * Only views to overwrite.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function viewsToOverwrite()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::viewsToOverwrite();
+        }
+        
+        /**
+         * Path of sidebar.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function sidebarView()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::sidebarView();
+        }
+        
+        /**
+         * Views copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function views()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::views();
+        }
+        
+        /**
+         * Tests copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function tests()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::tests();
+        }
+        
+        /**
+         * Resource assets copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function resourceAssets()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::resourceAssets();
+        }
+        
+        /**
+         * Languages assets copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function languages()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::languages();
+        }
+        
+        /**
+         * Gravatar path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function gravatar()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::gravatar();
+        }
+        
+        /**
+         * Config path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function config()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::config();
+        }
+        
+        /**
+         * Spatie menu path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function spatieMenu()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::spatieMenu();
+        }
+        
+        /**
+         * Menu path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function menu()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::menu();
+        }
+        
+        /**
+         * Web routes path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function webroutes()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::webroutes();
+        }
+        
+        /**
+         * Api routes path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function apiroutes()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::apiroutes();
+        }
+        
+        /**
+         * Auth config file copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function authConfig()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::authConfig();
+        }
+        
+        /**
+         * User class copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function userClass()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::userClass();
+        }
+        
+        /**
+         * AppServiceProvider class copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function appServiceProviderClass()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::appServiceProviderClass();
+        }
+        
+        /**
+         * Dusk environment files copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function duskEnvironment()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::duskEnvironment();
+        }
+        
+        /**
+         * Database config copy path.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function databaseConfig()
+        {
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::databaseConfig();
+        }
+         
+    }
+ 
+}
+
+namespace Nwidart\Modules\Facades { 
+
+    class Module {
+        
+        /**
+         * Add other module location.
+         *
+         * @param string $path
+         * @return $this 
+         * @static 
+         */ 
+        public static function addLocation($path)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::addLocation($path);
+        }
+        
+        /**
+         * Get all additional paths.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getPaths()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::getPaths();
+        }
+        
+        /**
+         * Get scanned modules paths.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getScanPaths()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::getScanPaths();
+        }
+        
+        /**
+         * Get & scan all modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function scan()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::scan();
+        }
+        
+        /**
+         * Get all modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function all()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::all();
+        }
+        
+        /**
+         * Get cached modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCached()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::getCached();
+        }
+        
+        /**
+         * Get all modules as collection instance.
+         *
+         * @return \Nwidart\Modules\Collection 
+         * @static 
+         */ 
+        public static function toCollection()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::toCollection();
+        }
+        
+        /**
+         * Get modules by status.
+         *
+         * @param $status
+         * @return array 
+         * @static 
+         */ 
+        public static function getByStatus($status)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::getByStatus($status);
+        }
+        
+        /**
+         * Determine whether the given module exist.
+         *
+         * @param $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function has($name)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::has($name);
+        }
+        
+        /**
+         * Get list of enabled modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function allEnabled()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::allEnabled();
+        }
+        
+        /**
+         * Get list of disabled modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function allDisabled()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::allDisabled();
+        }
+        
+        /**
+         * Get count from all modules.
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function count()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::count();
+        }
+        
+        /**
+         * Get all ordered modules.
+         *
+         * @param string $direction
+         * @return array 
+         * @static 
+         */ 
+        public static function getOrdered($direction = 'asc')
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::getOrdered($direction);
+        }
+        
+        /**
+         * Get a module path.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getPath()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::getPath();
+        }
+        
+        /**
+         * Register the modules.
+         *
+         * @static 
+         */ 
+        public static function register()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::register();
+        }
+        
+        /**
+         * Boot the modules.
+         *
+         * @static 
+         */ 
+        public static function boot()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::boot();
+        }
+        
+        /**
+         * Find a specific module.
+         *
+         * @param $name
+         * @return mixed|void 
+         * @static 
+         */ 
+        public static function find($name)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::find($name);
+        }
+        
+        /**
+         * Find a specific module by its alias.
+         *
+         * @param $alias
+         * @return mixed|void 
+         * @static 
+         */ 
+        public static function findByAlias($alias)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::findByAlias($alias);
+        }
+        
+        /**
+         * Find all modules that are required by a module. If the module cannot be found, throw an exception.
+         *
+         * @param $name
+         * @return array 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function findRequirements($name)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::findRequirements($name);
+        }
+        
+        /**
+         * Find a specific module, if there return that, otherwise throw exception.
+         *
+         * @param $name
+         * @return \Module 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function findOrFail($name)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::findOrFail($name);
+        }
+        
+        /**
+         * Get all modules as laravel collection instance.
+         *
+         * @param $status
+         * @return \Nwidart\Modules\Collection 
+         * @static 
+         */ 
+        public static function collections($status = 1)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::collections($status);
+        }
+        
+        /**
+         * Get module path for a specific module.
+         *
+         * @param $module
+         * @return string 
+         * @static 
+         */ 
+        public static function getModulePath($module)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::getModulePath($module);
+        }
+        
+        /**
+         * Get asset path for a specific module.
+         *
+         * @param $module
+         * @return string 
+         * @static 
+         */ 
+        public static function assetPath($module)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::assetPath($module);
+        }
+        
+        /**
+         * Get a specific config data from a configuration file.
+         *
+         * @param $key
+         * @param null $default
+         * @return mixed 
+         * @static 
+         */ 
+        public static function config($key, $default = null)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::config($key, $default);
+        }
+        
+        /**
+         * Get storage path for module used.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getUsedStoragePath()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::getUsedStoragePath();
+        }
+        
+        /**
+         * Set module used for cli session.
+         *
+         * @param $name
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function setUsed($name)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::setUsed($name);
+        }
+        
+        /**
+         * Forget the module used for cli session.
+         *
+         * @static 
+         */ 
+        public static function forgetUsed()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::forgetUsed();
+        }
+        
+        /**
+         * Get module used for cli session.
+         *
+         * @return string 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function getUsedNow()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::getUsedNow();
+        }
+        
+        /**
+         * Get laravel filesystem instance.
+         *
+         * @return \Illuminate\Filesystem\Filesystem 
+         * @static 
+         */ 
+        public static function getFiles()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::getFiles();
+        }
+        
+        /**
+         * Get module assets path.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getAssetsPath()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::getAssetsPath();
+        }
+        
+        /**
+         * Get asset url from a specific module.
+         *
+         * @param string $asset
+         * @return string 
+         * @throws InvalidAssetPath
+         * @static 
+         */ 
+        public static function asset($asset)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::asset($asset);
+        }
+        
+        /**
+         * Determine whether the given module is activated.
+         *
+         * @param string $name
+         * @return bool 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function enabled($name)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::enabled($name);
+        }
+        
+        /**
+         * Determine whether the given module is not activated.
+         *
+         * @param string $name
+         * @return bool 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function disabled($name)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::disabled($name);
+        }
+        
+        /**
+         * Enabling a specific module.
+         *
+         * @param string $name
+         * @return void 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function enable($name)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            \Nwidart\Modules\Laravel\Repository::enable($name);
+        }
+        
+        /**
+         * Disabling a specific module.
+         *
+         * @param string $name
+         * @return void 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function disable($name)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            \Nwidart\Modules\Laravel\Repository::disable($name);
+        }
+        
+        /**
+         * Delete a specific module.
+         *
+         * @param string $name
+         * @return bool 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function delete($name)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::delete($name);
+        }
+        
+        /**
+         * Update dependencies for the specified module.
+         *
+         * @param string $module
+         * @static 
+         */ 
+        public static function update($module)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::update($module);
+        }
+        
+        /**
+         * Install the specified module.
+         *
+         * @param string $name
+         * @param string $version
+         * @param string $type
+         * @param bool $subtree
+         * @return \Symfony\Component\Process\Process 
+         * @static 
+         */ 
+        public static function install($name, $version = 'dev-master', $type = 'composer', $subtree = false)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::install($name, $version, $type, $subtree);
+        }
+        
+        /**
+         * Get stub path.
+         *
+         * @return string|null 
+         * @static 
+         */ 
+        public static function getStubPath()
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::getStubPath();
+        }
+        
+        /**
+         * Set stub path.
+         *
+         * @param string $stubPath
+         * @return $this 
+         * @static 
+         */ 
+        public static function setStubPath($stubPath)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::setStubPath($stubPath);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            \Nwidart\Modules\Laravel\Repository::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            \Nwidart\Modules\Laravel\Repository::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            //Method inherited from \Nwidart\Modules\Repository            
+            return \Nwidart\Modules\Laravel\Repository::hasMacro($name);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -14538,6 +15917,12 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class Debugbar extends \Barryvdh\Debugbar\Facade {}
+
+    class AdminLTE extends \Acacha\AdminLTETemplateLaravel\Facades\AdminLTE {}
+
+    class Module extends \Nwidart\Modules\Facades\Module {}
  
 }
 
