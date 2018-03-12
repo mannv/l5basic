@@ -50,7 +50,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        die('Access define!');
+//        die('Access define!');
         $this->middleware('guest');
     }
 
