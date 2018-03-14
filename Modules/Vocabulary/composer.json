@@ -1,0 +1,25 @@
+{
+    "name": "nwidart/vocabulary",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Vocabulary\\Providers\\VocabularyServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Vocabulary\\": ""
+        }
+    }
+}

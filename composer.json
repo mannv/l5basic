@@ -28,7 +28,8 @@
     },
     "autoload": {
         "files": [
-            "app/Http/helpers.php"
+            "app/Http/Helper/helpers.php",
+            "app/Http/Helper/simple_html_dom.php"
         ],
         "classmap": [
             "database/seeds",
