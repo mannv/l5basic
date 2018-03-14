@@ -23,10 +23,12 @@ class Word extends BaseModel
         'img',
         'imgw',
         'imgh',
-        'audio_uk',
-        'audio_us',
+        'phonic_uk',
+        'phonic_us',
+        'audio',
         'meant',
-        'is_crawler'
+        'is_crawler',
+        'is_crawler_audio'
     ];
 
 }

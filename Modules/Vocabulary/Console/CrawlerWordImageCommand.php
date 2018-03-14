@@ -54,6 +54,7 @@ class CrawlerWordImageCommand extends Command
             die;
         }
         $imageUrl = 'http://' . $this->word->image_url;
+        $imageUrl = str_replace(' ', '%20', $imageUrl);
         $arr = explode('.', $imageUrl);
         $this->warn('image: ' . $imageUrl);
         $info = getimagesize($imageUrl);
@@ -65,7 +66,8 @@ class CrawlerWordImageCommand extends Command
             mkdir($savePath);
         }
 
-        $savePath = storage_path('images') . '/' . $this->word->name[0];
+        $folder = $this->word->name[0];
+        $savePath = storage_path('images') . '/' . $folder;
         if (!is_dir($savePath)) {
             mkdir($savePath);
         }
@@ -76,7 +78,7 @@ class CrawlerWordImageCommand extends Command
         $this->info('SAVE: ' . $savePath);
 
         $attributes = [
-            'img' => $imgName,
+            'img' => $folder . '/' . $imgName,
             'imgw' => $info[0],
             'imgh' => $info[1],
         ];
@@ -89,7 +91,7 @@ class CrawlerWordImageCommand extends Command
         $this->wordRepository->update($attributes, $this->word->id);
         $this->info('lay anh thanh cong');
         $this->word = null;
-        sleep(rand(1, 5));
+        sleep(1);
         $this->call('vocabulary:crawler:word-image');
     }
 }

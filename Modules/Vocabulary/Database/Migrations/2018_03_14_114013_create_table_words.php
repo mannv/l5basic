@@ -22,10 +22,12 @@ class CreateTableWords extends VocabularyMigration
             $table->string('img')->nullable();
             $table->integer('imgw')->default(0);
             $table->integer('imgh')->default(0);
-            $table->string('audio_uk')->nullable();
-            $table->string('audio_us')->nullable();
+            $table->string('phonic_uk')->nullable();
+            $table->string('phonic_us')->nullable();
+            $table->text('audio')->nullable();
             $table->text('meant')->nullable();
             $table->boolean('is_crawler')->default(0);
+            $table->boolean('is_crawler_audio')->default(0);
             $table->timestamps();
         });
     }
