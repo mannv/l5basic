@@ -32,7 +32,7 @@ class CrawlerGroupMeantCommand extends Command
     private $groupRepository;
 
     private $group;
-    private $languages = ['vi', 'ko', 'fr', 'es', 'pt', 'nl'];
+    private $languages = ['vi', 'ko', 'fr', 'es', 'pt', 'nl', 'zh-CN', 'zh-TW', 'ja', 'it', 'th', 'id'];
 
     /**
      * Create a new command instance.
