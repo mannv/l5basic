@@ -13,6 +13,7 @@ class Group extends BaseModel
     protected $fillable = [
         'name',
         'url',
-        'description'
+        'description',
+        'is_crawler'
     ];
 }

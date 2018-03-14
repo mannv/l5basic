@@ -38,7 +38,8 @@ if (!function_exists('get_web_page')) {
 }
 
 if (!function_exists('trim_space')) {
-    function trim_space($str) {
+    function trim_space($str)
+    {
         $str = preg_replace('!\s+!', ' ', $str);
         $str = str_replace(') .', ').', $str);
         $str = trim($str);
@@ -46,30 +47,35 @@ if (!function_exists('trim_space')) {
     }
 }
 
-function XML2JSON($xml) {
-
-    function normalizeSimpleXML($obj, &$result) {
-        $data = $obj;
-        if (is_object($data)) {
-            $data = get_object_vars($data);
-        }
-        if (is_array($data)) {
-            foreach ($data as $key => $value) {
-                $res = null;
-                normalizeSimpleXML($value, $res);
-                if (($key == '@attributes') && ($key)) {
-                    $result = $res;
-                } else {
-                    $result[$key] = $res;
-                }
-            }
-        } else {
-            $result = $data;
-        }
+function normalizeSimpleXML($obj, &$result)
+{
+    $data = $obj;
+    if (is_object($data)) {
+        $data = get_object_vars($data);
     }
+    if (is_array($data)) {
+        foreach ($data as $key => $value) {
+            $res = null;
+            normalizeSimpleXML($value, $res);
+            if (($key == '@attributes') && ($key)) {
+                $result = $res;
+            } else {
+                $result[$key] = $res;
+            }
+        }
+    } else {
+        $result = $data;
+    }
+}
+
+function XML2JSON($xml, $returnStr = false)
+{
     $result = null;
     normalizeSimpleXML(simplexml_load_string($xml), $result);
-    return json_encode($result);
+    if ($returnStr) {
+        return json_encode($result);
+    }
+    return json_decode(json_encode($result), true);
 }
 
 if (!function_exists('mannvGetENV')) {

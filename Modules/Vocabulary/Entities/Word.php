@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entities;
+namespace Modules\Vocabulary\Entities;
 
 use Modules\Vocabulary\Entities\BaseModel;
 /**
@@ -20,6 +20,9 @@ class Word extends BaseModel
         'group_id',
         'name',
         'image_url',
+        'img',
+        'imgw',
+        'imgh',
         'audio_uk',
         'audio_us',
         'meant',

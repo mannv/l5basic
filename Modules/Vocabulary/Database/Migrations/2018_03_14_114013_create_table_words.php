@@ -19,8 +19,11 @@ class CreateTableWords extends VocabularyMigration
             $table->integer('group_id');
             $table->string('name');
             $table->string('image_url');
-            $table->string('audio_uk');
-            $table->string('audio_us');
+            $table->string('img')->nullable();
+            $table->integer('imgw')->default(0);
+            $table->integer('imgh')->default(0);
+            $table->string('audio_uk')->nullable();
+            $table->string('audio_us')->nullable();
             $table->text('meant')->nullable();
             $table->boolean('is_crawler')->default(0);
             $table->timestamps();

@@ -2,7 +2,7 @@
 
 namespace Modules\Vocabulary\Repositories;
 
-use App\Entities\Word;
+use Modules\Vocabulary\Entities\Word;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 
