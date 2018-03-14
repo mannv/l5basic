@@ -14,6 +14,8 @@ class Group extends BaseModel
         'name',
         'url',
         'description',
-        'is_crawler'
+        'is_crawler',
+        'meant',
+        'is_crawler_meant'
     ];
 }

@@ -19,8 +19,10 @@ class CreateTableGroup extends VocabularyMigration
             $table->increments('id');
             $table->string('name');
             $table->string('url');
-            $table->boolean('is_crawler')->default(0);
             $table->text('description')->nullable();
+            $table->text('meant')->nullable();
+            $table->boolean('is_crawler')->default(0);
+            $table->boolean('is_crawler_meant')->default(0);
             $table->timestamps();
         });
     }
