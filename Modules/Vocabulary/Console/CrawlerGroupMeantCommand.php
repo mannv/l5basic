@@ -90,6 +90,6 @@ class CrawlerGroupMeantCommand extends Command
         $this->info('translate thanh cong: ' . $this->group->name);
         $this->word = null;
         sleep(1);
-        $this->call('vocabulary:crawler:word-meant');
+        $this->call('vocabulary:crawler:group-meant');
     }
 }
