@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Modules\Vocabulary\Console\ConvertDbCommand;
 use Modules\Vocabulary\Console\CrawlerGroupCommand;
 use Modules\Vocabulary\Console\CrawlerGroupMeantCommand;
 use Modules\Vocabulary\Console\CrawlerWordAudioCommand;
@@ -24,7 +25,8 @@ class Kernel extends ConsoleKernel
         CrawlerWordImageCommand::class,
         CrawlerWordAudioCommand::class,
         CrawlerWordMeantCommand::class,
-        CrawlerGroupMeantCommand::class
+        CrawlerGroupMeantCommand::class,
+        ConvertDbCommand::class
     ];
 
     /**
