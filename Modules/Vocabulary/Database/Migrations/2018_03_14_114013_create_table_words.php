@@ -28,6 +28,7 @@ class CreateTableWords extends VocabularyMigration
             $table->text('meant')->nullable();
             $table->boolean('is_crawler')->default(0);
             $table->boolean('is_crawler_audio')->default(0);
+            $table->boolean('is_crawler_meant')->default(0);
             $table->timestamps();
         });
     }

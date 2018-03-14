@@ -8,6 +8,7 @@ use Modules\Vocabulary\Console\CrawlerGroupCommand;
 use Modules\Vocabulary\Console\CrawlerWordAudioCommand;
 use Modules\Vocabulary\Console\CrawlerWordCommand;
 use Modules\Vocabulary\Console\CrawlerWordImageCommand;
+use Modules\Vocabulary\Console\CrawlerWordMeantCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -20,7 +21,8 @@ class Kernel extends ConsoleKernel
         CrawlerGroupCommand::class,
         CrawlerWordCommand::class,
         CrawlerWordImageCommand::class,
-        CrawlerWordAudioCommand::class
+        CrawlerWordAudioCommand::class,
+        CrawlerWordMeantCommand::class
     ];
 
     /**

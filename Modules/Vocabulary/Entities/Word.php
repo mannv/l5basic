@@ -28,7 +28,8 @@ class Word extends BaseModel
         'audio',
         'meant',
         'is_crawler',
-        'is_crawler_audio'
+        'is_crawler_audio',
+        'is_crawler_meant'
     ];
 
 }

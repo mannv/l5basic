@@ -92,7 +92,7 @@ class CrawlerWordAudioCommand extends Command
             mkdir($mp3Path);
         }
 
-        $folder = $this->word->name[0];
+        $folder = strtolower($this->word->name[0]);
         $mp3Path = storage_path('mp3') . '/' . $folder;
         if (!is_dir($mp3Path)) {
             mkdir($mp3Path);
