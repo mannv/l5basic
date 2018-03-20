@@ -4,6 +4,7 @@ namespace Modules\Crawler\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Crawler\Console\CrawlerCustomer;
 
 class CrawlerServiceProvider extends ServiceProvider
 {
@@ -35,7 +36,9 @@ class CrawlerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->commands([
+            CrawlerCustomer::class
+        ]);
     }
 
     /**
