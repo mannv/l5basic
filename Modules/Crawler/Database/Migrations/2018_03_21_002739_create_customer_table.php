@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateCustomerTable extends Migration
+{
+    private $tablePrefix;
+
+    public function __construct()
+    {
+        $this->tablePrefix = config('crawler.table_prefix');
+    }
+
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create($this->tablePrefix . 'customer', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('phone');
+            $table->string('email');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists($this->tablePrefix . 'customer');
+    }
+}
