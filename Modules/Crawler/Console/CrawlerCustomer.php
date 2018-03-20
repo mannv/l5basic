@@ -3,9 +3,7 @@
 namespace Modules\Crawler\Console;
 
 use Carbon\Carbon;
-use GuzzleHttp\Client;
 use Illuminate\Console\Command;
-use Illuminate\Http\Response;
 use Modules\Crawler\Repositories\CustomerRepository;
 
 class CrawlerCustomer extends Command
@@ -47,42 +45,71 @@ class CrawlerCustomer extends Command
      */
     public function handle(CustomerRepository $customerRepository)
     {
-        $options = [
-            'headers' => [
-                'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36',
-                'Accept' => 'application/json',
-                'token' => config('crawler.token')
-            ]
-        ];
-        $offset = \Cache::get('customer_offset', 0);
+        try {
+            $offset = \Cache::get('customer_offset', 0);
+            $baseUrl = config('crawler.url');
+            $url = $baseUrl . '?offset=' . $offset;
+            $this->warn('URL: ' . $url);
 
-        $client = new Client();
-        $baseUrl = config('crawler.url');
-        $url = $baseUrl . '?offset=' . $offset;
-        $this->warn('URL: ' . $url);
-        $res = $client->get($url, $options);
-        if ($res->getStatusCode() != Response::HTTP_OK) {
-            $this->log->error('Loi khong ket noi duoc vao server');
-            die;
+            $res = $this->getCURL($url);
+
+            $data = json_decode($res, true);
+            if (count($data) == 0) {
+                $this->log->error('HET ROI');
+                die;
+            }
+            $customerRepository->insertMulti($data);
+            $this->cacheOffset($offset + count($data));
+
+            $this->info('DONE: ' . implode(', ', array_column($data, 'id')));
+
+            $this->refresh();
+        } catch (\Exception $e) {
+            $this->warn('Error: ' . $e->getMessage());
+            $this->refresh();
         }
+    }
 
-        $data = json_decode($res->getBody()->__toString(), true);
-        if (count($data) == 0) {
-            $this->log->error('HET ROI');
-            die;
-        }
-        $customerRepository->insertMulti($data);
-        $this->cacheOffset($offset + count($data));
-
-        $this->info('done');
-
+    private function refresh()
+    {
         sleep(1);
         $this->call('crawler:customer');
     }
 
     private function cacheOffset($offset)
     {
-        $expiresAt = Carbon::now()->addMinutes(10);
+        $expiresAt = Carbon::now()->addMonths(10);
         \Cache::put('customer_offset', $offset, $expiresAt);
+    }
+
+
+    private function getCURL($url)
+    {
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "cache-control: no-cache",
+                "token: " . config('crawler.token')
+            ),
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            throw new \Exception('Error CURL');
+        } else {
+            return $response;
+        }
     }
 }
