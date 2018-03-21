@@ -1,0 +1,25 @@
+{
+    "name": "nwidart/admin",
+    "description": "",
+    "authors": [
+        {
+            "name": "Ha Anh Man",
+            "email": "mannv.g4@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Admin\\Providers\\AdminServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Admin\\": ""
+        }
+    }
+}

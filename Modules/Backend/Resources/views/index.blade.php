@@ -1,7 +1,7 @@
-@extends('adminlte::page')
+@extends('backend::layouts.master')
 
 @section('htmlheader_title')
-    Title
+    Backend
 @endsection
 
 
