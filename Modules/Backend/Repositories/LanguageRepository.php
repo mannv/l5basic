@@ -11,5 +11,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface LanguageRepository extends RepositoryInterface
 {
-    //
+    public function getAll();
 }

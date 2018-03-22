@@ -2,18 +2,49 @@
 
 namespace Modules\Backend\Http\Controllers;
 
+use App\Serializer\TableRender;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Backend\Repositories\LanguageRepository;
 
 class LanguageController extends BackendController
 {
+    /**
+     * @var LanguageRepository
+     */
+    private $languageRepository;
+
+    public function __construct(LanguageRepository $languageRepository)
+    {
+        $this->languageRepository = $languageRepository;
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        return view('backend::index');
+        $result = $this->languageRepository->all();
+        $tableHeader = [
+            'id' => '#',
+            'code' => 'Mã',
+            'name' => 'Ngôn ngữ',
+            'created_at' => 'Ngày tạo'
+        ];
+        $functions = [
+            [
+                'text' => 'Sửa',
+                'icon' => 'pencil',
+                'route' => 'language.edit',
+                'params' => ['name' => 'id', 'field' => 'id']
+            ]
+        ];
+
+        $table = new TableRender('Ngôn ngữ', $tableHeader, $result['data']);
+        $table->setFunction($functions);
+        $table->setCreateUrl(route('language.create'));
+        return view('backend::language.index', ['table' => $table->render()]);
     }
 
     /**

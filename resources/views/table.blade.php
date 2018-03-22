@@ -2,6 +2,11 @@
     <div class="box-header with-border">
         <h3 class="box-title">{{$caption}}</h3>
         <!-- /.box-tools -->
+        @if(!empty($createUrl))
+            <div class="box-tools pull-right">
+                <a type="button" class="btn btn-box-tool" href="{{$createUrl}}"><i class="fa fa-plus"></i> Create new</a>
+            </div>
+        @endif
     </div>
     <!-- /.box-header -->
     <div class="box-body">

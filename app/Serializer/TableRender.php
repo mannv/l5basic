@@ -16,8 +16,9 @@ class TableRender
     private $paginate = '';
     private $functions = [];
     private $renderCallback = [];
+    private $createUrl = '';
 
-    public function __construct($caption, $header, $data, $paginate)
+    public function __construct($caption, $header, $data, $paginate = null)
     {
         $this->caption = $caption;
         $this->header = $header;
@@ -52,6 +53,11 @@ class TableRender
         $this->renderCallback[$field] = $cb;
     }
 
+    public function setCreateUrl($url)
+    {
+        $this->createUrl = $url;
+    }
+
     public function render()
     {
         return view('table', [
@@ -60,7 +66,8 @@ class TableRender
             'data' => $this->data,
             'paginate' => $this->paginate,
             'functions' => $this->functions,
-            'renderCallback' => $this->renderCallback
+            'renderCallback' => $this->renderCallback,
+            'createUrl' => $this->createUrl
         ]);
     }
 }
