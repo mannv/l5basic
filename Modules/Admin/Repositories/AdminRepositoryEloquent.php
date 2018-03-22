@@ -41,4 +41,24 @@ class AdminRepositoryEloquent extends BaseRepository implements AdminRepository
         return $this->orderBy('id', 'DESC')->paginate();
     }
 
+    public function add($attributes = [])
+    {
+        return $this->create([
+            'name' => $attributes['name'],
+            'email' => $attributes['email'],
+            'password' => \Hash::make($attributes['password'])
+        ]);
+    }
+
+    public function edit($attributes = [], $id)
+    {
+        $data = [
+            'name' => $attributes['name'],
+            'email' => $attributes['email']
+        ];
+        if (!empty($attributes['password'])) {
+            $data['password'] = \Hash::make($attributes['password']);
+        }
+        return $this->update($data, $id);
+    }
 }

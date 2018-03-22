@@ -11,22 +11,26 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
+            @if(Route::getCurrentRoute() == 'admin.create')
             {!! Form::open(['url' => route('admin.store'), 'method' => 'POST']) !!}
+            @else
+                {!! Form::model($data ,['url' => route('admin.update', ['id' => $data['id']]), 'method' => 'PUT']) !!}
+            @endif
             <div class="form-group">
                 {!! Form::label('name', 'Tên', ['class' => 'control-label']) !!}
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
-                {!! Form::label('email', 'Tên', ['class' => 'control-label']) !!}
+                {!! Form::label('email', 'Email address', ['class' => 'control-label']) !!}
                 {!! Form::email('email', null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('password', 'Mật khẩu', ['class' => 'control-label']) !!}
-                {!! Form::text('password', null, ['class' => 'form-control', 'type' => 'password']) !!}
+                {!! Form::password('password', ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
-                {!! Form::label('re-password', 'Xác nhận mật khẩu', ['class' => 'control-label']) !!}
-                {!! Form::text('re-password', null, ['class' => 'form-control', 'type' => 'password']) !!}
+                {!! Form::label('password_confirmation', 'Xác nhận mật khẩu', ['class' => 'control-label']) !!}
+                {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::submit('Tạo', ['class' => 'btn btn-success']) !!}

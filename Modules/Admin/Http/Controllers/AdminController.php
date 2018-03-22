@@ -2,11 +2,16 @@
 
 namespace Modules\Admin\Http\Controllers;
 
+use App\Http\Constant;
 use App\Serializer\TableRender;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Input;
 use Modules\Admin\Criteria\AdminListCriteria;
+use Modules\Admin\Http\Requests\CreateAdminRequest;
+use Modules\Admin\Http\Requests\EditAdminRequest;
 use Modules\Admin\Repositories\AdminRepository;
 
 class AdminController extends Controller
@@ -64,7 +69,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin::default.create');
+        return view('admin::default.form');
     }
 
     /**
@@ -72,10 +77,10 @@ class AdminController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateAdminRequest $request)
     {
-        $params = $request->all();
-        dd($params);
+        $this->adminRepository->add($request->all());
+        return redirect(route('admin.index'))->with(Constant::SUCCESS_KEY, Constant::MESSAGE_CREATE_SUCCESS);
     }
 
     /**
@@ -91,9 +96,10 @@ class AdminController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('admin::edit');
+        $admin = $this->adminRepository->find($id);
+        return view('admin::default.form', $admin);
     }
 
     /**
@@ -101,8 +107,10 @@ class AdminController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(EditAdminRequest $request, $id)
     {
+        $this->adminRepository->edit($request->all(), $id);
+        return redirect(route('admin.index'))->with(Constant::SUCCESS_KEY, Constant::MESSAGE_EDIT_SUCCESS);
     }
 
     /**

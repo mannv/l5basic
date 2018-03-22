@@ -14,7 +14,7 @@ class Admin extends AdminModule
      *
      * @var array
      */
-    protected $fillable = ['id', 'name', 'email'];
+    protected $fillable = ['id', 'name', 'email', 'password', 'remember_token'];
     protected $hidden = ['password', 'remember_token'];
     public function __construct(array $attributes = [])
     {

@@ -12,4 +12,6 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 interface AdminRepository extends RepositoryInterface
 {
     public function getPaginate();
+    public function add($attributes = []);
+    public function edit($attributes = [], $id);
 }
