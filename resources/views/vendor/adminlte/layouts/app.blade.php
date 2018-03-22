@@ -82,7 +82,13 @@ desired effect
         <section class="content">
         @include('adminlte::layouts.partials.alert')
             <!-- Your Page Content Here -->
-            @yield('main-content')
+            <div class="container-fluid spark-screen">
+                <div class="row">
+                    <div class="col-md-12">
+                        @yield('main-content')
+                    </div>
+                </div>
+            </div>
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
