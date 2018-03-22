@@ -93,7 +93,7 @@ desired effect
     </div><!-- /.content-wrapper -->
 
     @include('adminlte::layouts.partials.footer')
-
+    {{--@include('adminlte::layouts.partials.controlsidebar')--}}
 </div><!-- ./wrapper -->
 </div>
 @section('scripts')
