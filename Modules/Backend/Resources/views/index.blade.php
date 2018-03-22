@@ -18,9 +18,9 @@
                     <div class="box-body">
                         <h1>Hello World {{module_path('Backend')}}</h1>
 
-                        <p>
-                            This view is loaded from module: {!! config('backend.name') !!}
-                        </p>
+                        <?php
+                            echo '<pre>' . print_r(config('languages'), true) . '</pre>';
+                        ?>
                     </div>
                     <!-- /.box-body -->
                 </div>
