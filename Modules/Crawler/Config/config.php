@@ -2,5 +2,7 @@
 
 return [
     'name' => 'Crawler',
-    'table_prefix' => 'crawler_'
+    'table_prefix' => 'crawler_',
+    'token' => '',
+    'url' => ''
 ];

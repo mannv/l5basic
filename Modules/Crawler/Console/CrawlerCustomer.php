@@ -55,6 +55,7 @@ class CrawlerCustomer extends Command
 
             $data = json_decode($res, true);
             if (count($data) == 0) {
+                $this->error('HET ROI');
                 $this->log->error('HET ROI');
                 die;
             }
