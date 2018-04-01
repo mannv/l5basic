@@ -5,6 +5,7 @@ namespace Modules\Shutterstock\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Shutterstock\Repositories\ShutterstockRepository;
 use Modules\Shutterstock\Repositories\TopicRepository;
 
 class ReviewController extends Controller
@@ -23,10 +24,14 @@ class ReviewController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $type = $request->get('type', '');
         $topics = $this->topicRepository->getAllWithCards();
-        return view('shutterstock::review.index', $topics);
+        return view('shutterstock::review.index', [
+            'data' => $topics['data'],
+            'type' => $type
+        ]);
     }
 
     /**
@@ -36,5 +41,15 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+        $id = $request->get('id', 0);
+        $action = $request->get('action', '');
+        $shutterstockRepository = app(ShutterstockRepository::class);
+        if ($action == ShutterstockRepository::STATUS_APPROVE) {
+            $shutterstockRepository->approveImage($id);
+        }
+        if ($action == ShutterstockRepository::STATUS_REJECT) {
+            $shutterstockRepository->rejectImage($id);
+        }
+        return \response()->json(['id' => $id, 'action' => $action]);
     }
 }

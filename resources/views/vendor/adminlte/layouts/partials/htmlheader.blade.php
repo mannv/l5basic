@@ -18,6 +18,7 @@
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="/css/ekko-lightbox.css">
     <script>
+        var csrf_token = '{{csrf_token()}}';
         //See https://laracasts.com/discuss/channels/vue/use-trans-in-vuejs
         window.trans = @php
             // copy all translations from /resources/lang/CURRENT_LOCALE/* to global JS variable

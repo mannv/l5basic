@@ -37,7 +37,11 @@ class ShutterstockRepositoryEloquent extends BaseRepository implements Shutterst
 
     public function deleteByCardId($cardId)
     {
-        return $this->deleteWhere(['card_id' => $cardId, 'downloaded' => false, 'status' => ShutterstockRepository::STATUS_PENDING]);
+        return $this->deleteWhere([
+            'card_id' => $cardId,
+            'downloaded' => false,
+            'status' => ShutterstockRepository::STATUS_PENDING
+        ]);
     }
 
     public function createIgnore($attributes)
@@ -45,5 +49,15 @@ class ShutterstockRepositoryEloquent extends BaseRepository implements Shutterst
         $attributes['created_at'] = Carbon::now();
         $attributes['updated_at'] = Carbon::now();
         return $this->model->insertIgnore($attributes);
+    }
+
+    public function approveImage($id)
+    {
+        $this->update(['status' => ShutterstockRepository::STATUS_APPROVE], $id);
+    }
+
+    public function rejectImage($id)
+    {
+        $this->update(['status' => ShutterstockRepository::STATUS_REJECT], $id);
     }
 }

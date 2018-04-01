@@ -9,13 +9,14 @@ $navigation = [
     [
         'icon' => 'image',
         'route' => 'review.index',
-        'name' => 'Duyệt ảnh'
+        'name' => 'Duyệt ảnh',
+        'url' => route('review.index', ['type' => 'pending'])
     ]
 ];
 ?>
 <ul class="sidebar-menu">
     <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
     @foreach($navigation as $item)
-        <li @if($routeName == $item['route']) class="active" @endif><a href="{{ route($item['route']) }}"><i class='fa fa-{{$item['icon']}}'></i> <span>{{ $item['name'] }}</span></a></li>
+        <li @if($routeName == $item['route']) class="active" @endif><a href="{{ isset($item['url']) ? $item['url'] : route($item['route']) }}"><i class='fa fa-{{$item['icon']}}'></i> <span>{{ $item['name'] }}</span></a></li>
     @endforeach
 </ul><!-- /.sidebar-menu -->

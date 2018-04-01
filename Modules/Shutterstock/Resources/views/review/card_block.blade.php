@@ -1,41 +1,53 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="card-header text-bold">
-            <a target="_blank"
-               href="https://www.shutterstock.com/search?searchterm={{$data['name']}}">{{$data['name']}}</a>
+<?php
+if ($type == 'pending') {
+    $data['images'] = array_filter($data['images'], function ($item) {
+        return $item['status'] == \Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_PENDING;
+    });
+}
+?>
+@if(!empty($data['images']))
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="card-header text-bold">
+                <a target="_blank"
+                   href="https://www.shutterstock.com/search?searchterm={{$data['name']}}">{{$data['name']}}</a>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                @foreach($data['images'] as $image)
+
+                    <div class="thumbnail col-md-3 text-center">
+                        <div>
+                            <a href="{{shutterstock_thumbnail($image['shutterstock_id'])}}" data-toggle="lightbox">
+                                <img src="{{shutterstock_thumbnail($image['shutterstock_id'])}}" alt="">
+                            </a>
+                        </div>
+                        <div class="text-center" id="icon_{{$image['id']}}">
+                            <i title="approve"
+                               class="approve fa fa-thumbs-up text-green {{$image['status'] != \Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_APPROVE ? 'hidden' : ''}}"></i>
+                            <i title="reject"
+                               class="reject fa fa-thumbs-down text-red {{$image['status'] != \Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_REJECT ? 'hidden' : ''}}"></i>
+                            @if($image['downloaded'])
+                                <i title="downloaded" class="fa fa-download text-green"></i>
+                            @endif
+                            @if($image['status'] == \Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_PENDING)
+                                <div class="ajax-action">
+                                    <a cid="{{$image['id']}}"
+                                       at="{{\Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_APPROVE}}"
+                                       class="ajax-link">approve</a> | <a
+                                            cid="{{$image['id']}}"
+                                            at="{{\Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_REJECT}}"
+                                            class="ajax-link">reject</a>
+                                </div>
+                                <div class="lds-ellipsis hidden"><div></div><div></div><div></div><div></div></div>
+                            @endif
+                        </div>
+
+                    </div>
+
+                @endforeach
+            </div>
         </div>
     </div>
-    <div class="panel-body">
-        @if(!empty($data['images']))
-            @foreach($data['images'] as $image)
-                <div class="row {{$image['status'] == \Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_REJECT ? 'reject-image' : ''}}">
-                    <div class="thumbnail col-md-3 text-center">
-                        <i class="fa fa-image fa-2x hidden"></i>
-                        <a href="{{shutterstock_thumbnail($image['shutterstock_id'])}}" data-toggle="lightbox">
-                            <img src="{{shutterstock_thumbnail($image['shutterstock_id'])}}" alt="">
-                        </a>
-                    </div>
-                    <div class="col-md-8">
-                        <input @if($image['downloaded']) readonly @endif type="text" name="image[{{$data['id']}}][]"
-                               value="{{$image['shutterstock_url']}}"
-                               class="form-control">
-                    </div>
-                    <div class="col-md-1 text-right">
-                        @if($image['status'] == \Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_PENDING)
-                            <i title="delete" class="fa fa-minus"></i>
-                        @endif
-                        @if($image['status'] == \Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_APPROVE)
-                            <i title="approve" class="fa fa-thumbs-up text-green"></i>
-                        @endif
-                        @if($image['status'] == \Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_REJECT)
-                            <i title="reject" class="fa fa-thumbs-down text-red"></i>
-                        @endif
-                        @if($image['downloaded'])
-                            <i title="downloaded" class="fa fa-download text-green"></i>
-                        @endif
-                    </div>
-                </div>
-            @endforeach
-        @endif
-    </div>
-</div>
+@endif

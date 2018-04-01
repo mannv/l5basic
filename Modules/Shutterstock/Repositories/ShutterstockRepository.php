@@ -17,4 +17,6 @@ interface ShutterstockRepository extends RepositoryInterface
 
     public function deleteByCardId($cardId);
     public function createIgnore($attributes);
+    public function approveImage($id);
+    public function rejectImage($id);
 }
