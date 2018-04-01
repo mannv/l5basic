@@ -3,7 +3,6 @@
 @section('htmlheader_title')
     Create new admin
 @endsection
-
 @section('main-content')
     <div class="box box-success box-solid">
         <div class="box-header with-border">
@@ -11,7 +10,8 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            @if(Route::getCurrentRoute() == 'admin.create')
+
+            @if(Route::currentRouteName() == 'admin.create')
                 {!! Form::open(['url' => route('admin.store'), 'method' => 'POST']) !!}
             @elseif(!empty($data))
                 {!! Form::model($data ,['url' => route('admin.update', ['id' => $data['id']]), 'method' => 'PUT']) !!}
