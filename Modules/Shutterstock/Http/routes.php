@@ -19,4 +19,7 @@ Route::group([
         'index',
         'store'
     ]);
+    Route::resource('download', 'DownloadController')->only([
+        'index'
+    ]);
 });

@@ -19,4 +19,5 @@ interface ShutterstockRepository extends RepositoryInterface
     public function createIgnore($attributes);
     public function approveImage($id);
     public function rejectImage($id);
+    public function getImageNeedDownload();
 }

@@ -60,4 +60,9 @@ class ShutterstockRepositoryEloquent extends BaseRepository implements Shutterst
     {
         $this->update(['status' => ShutterstockRepository::STATUS_REJECT], $id);
     }
+
+    public function getImageNeedDownload()
+    {
+        return $this->findWhere(['status' => ShutterstockRepository::STATUS_APPROVE, 'downloaded' => false]);
+    }
 }

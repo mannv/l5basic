@@ -9,8 +9,7 @@ if ($type == 'pending') {
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="card-header text-bold">
-                <a target="_blank"
-                   href="https://www.shutterstock.com/search?searchterm={{$data['name']}}">{{$data['name']}}</a>
+                {{$data['name']}}
             </div>
         </div>
         <div class="panel-body">
@@ -22,6 +21,7 @@ if ($type == 'pending') {
                             <a href="{{shutterstock_thumbnail($image['shutterstock_id'])}}" data-toggle="lightbox">
                                 <img src="{{shutterstock_thumbnail($image['shutterstock_id'])}}" alt="">
                             </a>
+                            <a target="_blank" class="text-center" href="{{$image['shutterstock_url']}}">{{$image['shutterstock_id']}}</a>
                         </div>
                         <div class="text-center" id="icon_{{$image['id']}}">
                             <i title="approve"

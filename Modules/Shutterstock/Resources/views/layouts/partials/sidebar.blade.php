@@ -11,6 +11,11 @@ $navigation = [
         'route' => 'review.index',
         'name' => 'Duyệt ảnh',
         'url' => route('review.index', ['type' => 'pending'])
+    ],
+    [
+        'icon' => 'download',
+        'route' => 'download.index',
+        'name' => 'Download ảnh'
     ]
 ];
 ?>
