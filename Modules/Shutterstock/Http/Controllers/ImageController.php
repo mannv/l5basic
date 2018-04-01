@@ -39,15 +39,6 @@ class ImageController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
-    {
-        return view('shutterstock::create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      * @param  Request $request
      * @return Response
@@ -74,40 +65,5 @@ class ImageController extends Controller
             }
         }
         return redirect()->back()->with(Constant::SUCCESS_KEY, Constant::MESSAGE_CREATE_SUCCESS);
-    }
-
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('shutterstock::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('shutterstock::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
     }
 }

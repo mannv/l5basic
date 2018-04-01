@@ -5,9 +5,11 @@
 @endsection
 
 @section('main-content')
-    <a class="btn btn-default" href="{{route('topic.create')}}" role="button">
-        <i class="fa fa-plus"></i> Tạo chủ đề mới
-    </a>
+    <div style="padding-bottom: 20px">
+        <a class="btn btn-default" href="{{route('topic.create')}}" role="button">
+            <i class="fa fa-plus"></i> Tạo chủ đề mới
+        </a>
+    </div>
 
     @if(!empty($data))
         @foreach($data as $topic)
@@ -48,7 +50,7 @@
                             $countApprove = count($approve);
                             $countDownload = count($downloaded);
                             @endphp
-                            <tr @if($countApprove > $countDownload) class="miss-download" @endif>
+                            <tr class="{{$countApprove > $countDownload ? 'miss-download' : ''}} {{empty($card['images']) ? 'miss-image' : ''}}">
                                 <td>{{$card['name']}}</td>
                                 <td>{{count($card['images'])}}</td>
                                 <td>
@@ -73,6 +75,10 @@
     <style type="text/css">
         tr.miss-download {
             background-color: #f39c12;
+            color: white;
+        }
+        tr.miss-image {
+            background-color: gray;
             color: white;
         }
     </style>

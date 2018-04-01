@@ -2,9 +2,14 @@
 $routeName = Route::currentRouteName();
 $navigation = [
     [
-        'icon' => 'user',
+        'icon' => 'align-justify',
         'route' => 'topic.index',
-        'name' => 'Topics'
+        'name' => 'Chủ đề'
+    ],
+    [
+        'icon' => 'image',
+        'route' => 'review.index',
+        'name' => 'Duyệt ảnh'
     ]
 ];
 ?>
