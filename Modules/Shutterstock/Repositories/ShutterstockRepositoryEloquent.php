@@ -2,6 +2,8 @@
 
 namespace Modules\Shutterstock\Repositories;
 
+use Carbon\Carbon;
+use Modules\Shutterstock\Presenters\ShutterstockPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Modules\Shutterstock\Entities\Shutterstock;
@@ -23,7 +25,6 @@ class ShutterstockRepositoryEloquent extends BaseRepository implements Shutterst
         return Shutterstock::class;
     }
 
-    
 
     /**
      * Boot up the repository, pushing criteria
@@ -31,6 +32,18 @@ class ShutterstockRepositoryEloquent extends BaseRepository implements Shutterst
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+        $this->setPresenter(app(ShutterstockPresenter::class));
     }
-    
+
+    public function deleteByCardId($cardId)
+    {
+        return $this->deleteWhere(['card_id' => $cardId, 'downloaded' => false]);
+    }
+
+    public function createIgnore($attributes)
+    {
+        $attributes['created_at'] = Carbon::now();
+        $attributes['updated_at'] = Carbon::now();
+        return $this->model->insertIgnore($attributes);
+    }
 }

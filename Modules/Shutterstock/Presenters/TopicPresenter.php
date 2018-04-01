@@ -2,7 +2,7 @@
 
 namespace Modules\Shutterstock\Presenters;
 
-use Modules\Backend\Transformers\TopicTransformer;
+use Modules\Shutterstock\Transformers\TopicTransformer;
 use Prettus\Repository\Presenter\FractalPresenter;
 
 /**

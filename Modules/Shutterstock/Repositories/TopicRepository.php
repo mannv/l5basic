@@ -11,5 +11,6 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface TopicRepository extends RepositoryInterface
 {
-    //
+    public function getTopicWithCards($topicId);
+    public function getAllWithCards();
 }

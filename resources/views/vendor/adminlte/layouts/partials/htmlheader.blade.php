@@ -31,4 +31,5 @@
             echo json_encode($trans);
         @endphp
     </script>
+    @yield('inner_css')
 </head>

@@ -13,4 +13,7 @@ interface ShutterstockRepository extends RepositoryInterface
 {
     const STATUS_APPROVE = 'approve';
     const STATUS_REJECT = 'reject';
+
+    public function deleteByCardId($cardId);
+    public function createIgnore($attributes);
 }

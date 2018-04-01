@@ -21,7 +21,8 @@ class CreateShutterstocksTable extends Migration
             $table->integer('shutterstock_id')->index();
             $table->string('shutterstock_url');
             $table->enum('status',['approve', 'reject']);
-            $table->boolean('downloaded');
+            $table->boolean('downloaded')->default(false);
+            $table->unique(['card_id', 'shutterstock_id']);
             $table->timestamps();
 		});
 	}

@@ -2,6 +2,7 @@
 
 namespace Modules\Shutterstock\Repositories;
 
+use Modules\Shutterstock\Presenters\TopicPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Modules\Shutterstock\Entities\Topic;
@@ -23,7 +24,6 @@ class TopicRepositoryEloquent extends BaseRepository implements TopicRepository
         return Topic::class;
     }
 
-    
 
     /**
      * Boot up the repository, pushing criteria
@@ -31,6 +31,17 @@ class TopicRepositoryEloquent extends BaseRepository implements TopicRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+        $this->setPresenter(app(TopicPresenter::class));
     }
-    
+
+    public function getAllWithCards()
+    {
+        return $this->orderBy('id')->with('cards')->all();
+    }
+
+    public function getTopicWithCards($topicId)
+    {
+        return $this->with('cardWithImage')->find($topicId);
+    }
+
 }

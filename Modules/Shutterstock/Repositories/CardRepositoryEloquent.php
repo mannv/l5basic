@@ -2,6 +2,7 @@
 
 namespace Modules\Shutterstock\Repositories;
 
+use Modules\Shutterstock\Presenters\CardPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Modules\Shutterstock\Entities\Card;
@@ -23,7 +24,6 @@ class CardRepositoryEloquent extends BaseRepository implements CardRepository
         return Card::class;
     }
 
-    
 
     /**
      * Boot up the repository, pushing criteria
@@ -31,6 +31,22 @@ class CardRepositoryEloquent extends BaseRepository implements CardRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+        $this->setPresenter(app(CardPresenter::class));
     }
-    
+
+    public function createCards($cards, $topicId)
+    {
+        if (empty($cards)) {
+            return;
+        }
+        $cards = array_unique($cards);
+        foreach ($cards as $cardName) {
+            $name = trim($cardName);
+            if (empty($name)) {
+                continue;
+            }
+            $this->create(['topic_id' => $topicId, 'name' => $name]);
+        }
+    }
+
 }
