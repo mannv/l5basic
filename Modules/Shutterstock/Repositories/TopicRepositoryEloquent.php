@@ -36,7 +36,7 @@ class TopicRepositoryEloquent extends BaseRepository implements TopicRepository
 
     public function getAllWithCards()
     {
-        return $this->orderBy('id')->with('cards')->all();
+        return $this->orderBy('id')->with('cardWithImage')->all();
     }
 
     public function getTopicWithCards($topicId)

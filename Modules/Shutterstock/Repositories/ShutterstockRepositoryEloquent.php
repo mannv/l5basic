@@ -37,7 +37,7 @@ class ShutterstockRepositoryEloquent extends BaseRepository implements Shutterst
 
     public function deleteByCardId($cardId)
     {
-        return $this->deleteWhere(['card_id' => $cardId, 'downloaded' => false]);
+        return $this->deleteWhere(['card_id' => $cardId, 'downloaded' => false, 'status' => ShutterstockRepository::STATUS_PENDING]);
     }
 
     public function createIgnore($attributes)

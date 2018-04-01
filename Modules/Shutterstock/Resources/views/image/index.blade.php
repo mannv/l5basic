@@ -14,7 +14,7 @@
         </div>
         <div class="panel-body" id="card_data">
             @php
-                $cards = array_chunk($data['card_with_image'], 2);
+                $cards = array_chunk($data['cards'], 2);
             @endphp
             @foreach($cards as $rows)
                 <div class="row">
@@ -29,7 +29,7 @@
         <div class="panel-footer">
             <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
             <a class="btn btn-default" href="{{route('image.index')}}" role="button">
-                <i class="fa fa-chevron-left"></i> Huỷ
+                <i class="fa fa-chevron-left"></i> Quay lại
             </a>
         </div>
     </div>
@@ -43,6 +43,9 @@
 
         #card_data .fa-minus {
             cursor: pointer;
+        }
+        .reject-image {
+            background-color: rgba(255,220,210,0.85);
         }
     </style>
 @endsection
@@ -71,18 +74,19 @@
                 var thumbnail = getShutterstockThumnail($(this).val());
                 if (thumbnail.length == 0) {
                     $(divImg).find('i').removeClass('hide');
-                    $(divImg).find('img').addClass('hidden');
+                    $(divImg).find('a').addClass('hidden');
                     return;
                 }
                 $(divImg).find('i').addClass('hide');
-                $(divImg).find('img').attr('src', thumbnail).removeClass('hidden');
+                $(divImg).find('a').attr('href', thumbnail).removeClass('hidden');
+                $(divImg).find('img').attr('src', thumbnail);
             });
             $('#card_data .fa-plus').click(function () {
                 var cid = $(this).attr('cid');
                 var html = '<div class="row">\n' +
                     '            <div class="thumbnail col-md-3 text-center">\n' +
                     '                <i class="fa fa-image fa-2x"></i>\n' +
-                    '                <img src="" alt="" class="hidden">\n' +
+                    '                <a href="" data-toggle="lightbox" class="hidden"><img src="" alt=""></a>\n' +
                     '            </div>\n' +
                     '            <div class="col-md-8">\n' +
                     '                <input type="text" name="image[' + cid + '][]" class="form-control">\n' +

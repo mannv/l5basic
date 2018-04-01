@@ -21,6 +21,11 @@ class TopicTransformer extends TransformerAbstract
      */
     public function transform(Topic $model)
     {
-        return $model->toArray();
+        $attributes = $model->toArray();
+        if (isset($attributes['card_with_image'])) {
+            $attributes['cards'] = $attributes['card_with_image'];
+            unset($attributes['card_with_image']);
+        }
+        return $attributes;
     }
 }

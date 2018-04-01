@@ -11,6 +11,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface ShutterstockRepository extends RepositoryInterface
 {
+    const STATUS_PENDING = 'pending';
     const STATUS_APPROVE = 'approve';
     const STATUS_REJECT = 'reject';
 

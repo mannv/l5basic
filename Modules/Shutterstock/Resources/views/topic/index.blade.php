@@ -27,16 +27,39 @@
                         <tr>
                             <th>Card name</th>
                             <th>Tổng số ảnh đã kiếm</th>
-                            <th>Approve/Reject</th>
+                            <th>Pending/Approve/Reject</th>
                             <th>Downloaded</th>
                         </tr>
 
                         @foreach($topic['cards'] as $card)
-                            <tr>
+                            @php
+                                $pending = array_filter($card['images'], function($item){
+                                    return $item['status'] == \Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_PENDING;
+                                });
+                            $approve = array_filter($card['images'], function($item){
+                                    return $item['status'] == \Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_APPROVE;
+                                });
+                            $reject = array_filter($card['images'], function($item){
+                                    return $item['status'] == \Modules\Shutterstock\Repositories\ShutterstockRepository::STATUS_REJECT;
+                                });
+                            $downloaded = array_filter($card['images'], function($item){
+                                    return $item['downloaded'];
+                                });
+                            $countApprove = count($approve);
+                            $countDownload = count($downloaded);
+                            @endphp
+                            <tr @if($countApprove > $countDownload) class="miss-download" @endif>
                                 <td>{{$card['name']}}</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{count($card['images'])}}</td>
+                                <td>
+                                    {{ count($pending) }} / <strong class="text-green">{{ $countApprove }}</strong> /
+                                    <strong class="text-red">{{ count($reject) }}</strong>
+                                </td>
+                                <td>
+                                    @if($countDownload > 0)
+                                        <strong class="text-green">{{$countDownload}}</strong>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </table>
@@ -45,4 +68,12 @@
         @endforeach
     @endif
 
+@endsection
+@section('inner_css')
+    <style type="text/css">
+        tr.miss-download {
+            background-color: #f39c12;
+            color: white;
+        }
+    </style>
 @endsection
