@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-    'middleware' => 'web',
+    'middleware' => ['web', 'auth'],
     'prefix' => 'shutterstock',
     'namespace' => 'Modules\Shutterstock\Http\Controllers'
 ], function () {
