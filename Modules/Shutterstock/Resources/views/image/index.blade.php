@@ -79,7 +79,7 @@
                 }
                 $(divImg).find('i').addClass('hide');
                 $(divImg).find('a').attr('href', thumbnail).removeClass('hidden');
-                $(divImg).find('img').attr('src', thumbnail);
+                $(divImg).find('img').attr('src', thumbnail).removeClass('hidden');
             });
             $('#card_data .fa-plus').click(function () {
                 var cid = $(this).attr('cid');
