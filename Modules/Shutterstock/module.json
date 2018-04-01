@@ -1,0 +1,17 @@
+{
+    "name": "Shutterstock",
+    "alias": "shutterstock",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Shutterstock\\Providers\\ShutterstockServiceProvider",
+        "Modules\\Shutterstock\\Providers\\RepositoryServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

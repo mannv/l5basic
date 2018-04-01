@@ -6,8 +6,7 @@
     "active": 1,
     "order": 0,
     "providers": [
-        "Modules\\Backend\\Providers\\BackendServiceProvider",
-        "Modules\\Backend\\Providers\\RepositoryServiceProvider"
+        "Modules\\Backend\\Providers\\BackendServiceProvider"
     ],
     "aliases": {},
     "files": [

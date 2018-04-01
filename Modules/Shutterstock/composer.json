@@ -1,0 +1,25 @@
+{
+    "name": "nwidart/shutterstock",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Shutterstock\\Providers\\ShutterstockServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Shutterstock\\": ""
+        }
+    }
+}
