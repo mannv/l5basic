@@ -44,4 +44,9 @@ class TopicRepositoryEloquent extends BaseRepository implements TopicRepository
         return $this->with('cardWithImage')->find($topicId);
     }
 
+    public function getTopic($id)
+    {
+        return $this->with('cards')->find($id);
+    }
+
 }

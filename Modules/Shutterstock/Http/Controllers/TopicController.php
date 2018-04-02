@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Shutterstock\Http\Requests\CreateTopicRequest;
+use Modules\Shutterstock\Http\Requests\UpdateTopicRequest;
 use Modules\Shutterstock\Repositories\CardRepository;
 use Modules\Shutterstock\Repositories\TopicRepository;
 
@@ -51,6 +52,37 @@ class TopicController extends Controller
         $params = $request->all();
         $cards = explode("\r\n", $params['cards']);
         $topic = $this->topicRepository->create(['name' => $params['name']]);
+        $cardRepository = app(CardRepository::class);
+        $cardRepository->createCards($cards, $topic['data']['id']);
+        return redirect(route('topic.index'))->with(Constant::SUCCESS_KEY, Constant::MESSAGE_CREATE_SUCCESS);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $topic = $this->topicRepository->getTopic($id);
+        $data = [
+            'id' => $id,
+            'name' => $topic['data']['name'],
+            'cards' => implode("\n", array_column($topic['data']['cards'], 'name'))
+        ];
+
+        return view('shutterstock::topic.create', ['data' => $data]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * @param  Request $request
+     * @return Response
+     */
+    public function update(UpdateTopicRequest $request, $id)
+    {
+        $params = $request->all();
+        $cards = explode("\r\n", $params['cards']);
+        $topic = $this->topicRepository->update(['name' => $params['name']], $id);
         $cardRepository = app(CardRepository::class);
         $cardRepository->createCards($cards, $topic['data']['id']);
         return redirect(route('topic.index'))->with(Constant::SUCCESS_KEY, Constant::MESSAGE_CREATE_SUCCESS);

@@ -2,6 +2,7 @@
 
 namespace Modules\Shutterstock\Repositories;
 
+use Carbon\Carbon;
 use Modules\Shutterstock\Presenters\CardPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -45,7 +46,12 @@ class CardRepositoryEloquent extends BaseRepository implements CardRepository
             if (empty($name)) {
                 continue;
             }
-            $this->create(['topic_id' => $topicId, 'name' => $name]);
+            $this->model->insertIgnore(([
+                'topic_id' => $topicId,
+                'name' => $name,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]));
         }
     }
 

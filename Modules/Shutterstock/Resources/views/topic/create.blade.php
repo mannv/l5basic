@@ -3,7 +3,6 @@
 @section('htmlheader_title')
     Shutterstock image
 @endsection
-
 @section('main-content')
     <div class="box box-success box-solid">
         <div class="box-header with-border">
@@ -11,7 +10,11 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            {!! Form::open(['url' => route('topic.store'), 'method' => 'POST']) !!}
+            @if(Route::currentRouteName() == 'topic.create')
+                {!! Form::open(['url' => route('topic.store'), 'method' => 'POST']) !!}
+            @else
+                {!! Form::model($data ,['url' => route('topic.update', ['id' => $data['id']]), 'method' => 'PUT']) !!}
+            @endif
             <div class="form-group">
                 {!! Form::label('name', 'Tên chủ đề', ['class' => 'control-label']) !!}
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}

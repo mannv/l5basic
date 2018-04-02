@@ -13,4 +13,5 @@ interface TopicRepository extends RepositoryInterface
 {
     public function getTopicWithCards($topicId);
     public function getAllWithCards();
+    public function getTopic($id);
 }
